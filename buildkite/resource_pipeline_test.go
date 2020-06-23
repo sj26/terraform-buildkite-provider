@@ -309,7 +309,7 @@ resource "buildkite_pipeline" "test_beanstalk" {
 const testAccPipeline_basicGithub = `
 resource "buildkite_pipeline" "test_github" {
   name = "tf-acc-basic-github"
-  repository = "git@github.com:yougroupteam/terraform-provider-buildkite.git"
+  repository = "git@github.com:sj26/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -348,7 +348,7 @@ resource "buildkite_pipeline" "test_gitlab" {
 const testAccPipeline_githubSettingsTriggerModeDeployment = `
 resource "buildkite_pipeline" "test_foo" {
   name = "tf-acc-foo"
-  repository = "git@github.com:yougroupteam/terraform-provider-buildkite.git"
+  repository = "git@github.com:sj26/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -365,7 +365,7 @@ resource "buildkite_pipeline" "test_foo" {
 const testAccPipeline_githubSettingsBuildTags = `
 resource "buildkite_pipeline" "test_foo" {
   name = "tf-acc-foo"
-  repository = "git@github.com:yougroupteam/terraform-provider-buildkite.git"
+  repository = "git@github.com:sj26/terraform-provider-buildkite.git"
 
   step {
     type = "script"
