@@ -1,24 +1,23 @@
-# Terraform provider for [buildkite](https://www.buildkite.com)
+# Terraform provider for Buildkite
 
-This allows you to manage buildkite pipelines with Terraform.
+Manage [Buildkite](https://www.buildkite.com) pipelines and other configuration via [Terraform](https://www.terraform.io).
 
-## Originally forked from yougroupteam/terraform-buildkite
-
-This provider is originally forked from `saymedia/terraform-buildkite`. However, since there's no maintainer from `saymedia` anymore we have now duplicated the repo instead to ensure contributed changes can be adopted buy the community. 
-
-See [https://github.com/saymedia/terraform-buildkite/issues/25] for details.
-
+Forked from [saymedia](https://github.com/saymedia/terraform-buildkite) via [yougroupteam](https://github.com/yougroupteam/terraform-buildkite). Both teams have done great work. It's been forked here to make some minor improvements and make binary releases available for automated download and install via [terraform-provider-buildkite-plugin](https://github.com/coyainsurance/terraform-provider-buildkite-plugin).
 
 ## Installation
 
-Run
-```bash
-go get github.com/yougroupteam/terraform-buildkite
-go install github.com/yougroupteam/terraform-buildkite
-```
-Which gives you a `terraform-provider-buildkite` in `$GOPATH/bin`.
+**Recommended:** Download a [binary release](https://github.com/sj26/terraform-buildkite-provider/releases) into your local Terraform plugins directory (`~/.terraform.d/plugins/`) or use the [terraform-provider-buildkite-plugin](https://github.com/coyainsurance/terraform-provider-buildkite-plugin) to install it automatically when running on Buildkite.
 
-[Add the provider to the plugin search path](https://www.terraform.io/docs/configuration/providers.html#third-party-plugins) in your home directory (or, in CI, the home directory of whatever user runs terraform). You'll need to make sure the program conforms to the plugin naming convention noted in the Terraform documentation linked above. (eg: terraform-provider-buildkite_vX.Y.Z)
+Or install manually:
+
+```bash
+go get github.com/sj26/terraform-provider-buildkite
+go install github.com/sj26/terraform-provider-buildkite
+mkdir -p ~/.terraform.d/plugins
+cp $GOPATH/bin/terraform-provider-buildkite ~/.terraform.d/plugins/
+```
+
+See the [Terraform docs on custom plugins](https://www.terraform.io/docs/configuration/providers.html#third-party-plugins) for more options.
 
 ## Usage
 
@@ -62,8 +61,8 @@ terraform import buildkite_pipeline.my_name my-pipeline-slug
 To do local development you will most likely be working in a Github fork of the repository. After creating your fork
 you can add it as a remote on your local repository in GOPATH:
 
-* `cd $GOPATH/src/github.com/yougroupteam/terraform-buildkite`
-* `git remote add mine git@github.com:yourname/terraform-buildkite`
+* `cd $GOPATH/src/github.com/sj26/terraform-provider-buildkite`
+* `git remote add mine git@github.com:yourname/terraform-provider-buildkite`
 * `git checkout -b yourbranch`
 * `git push -u mine yourbranch`
 
@@ -71,8 +70,8 @@ After this you should be able to `git push` to your fork, and eventually open a 
 
 You can build like this:
 
-* `go install github.com/yougroupteam/terraform-buildkite/terraform-provider-buildkite`
+* `go install github.com/sj26/terraform-provider-buildkite`
 
-This should produce a file at `$GOPATH/bin/terraform-provider-buildkite`. To use this with Terraform you'll need to move that binary to the [third-party plugins direcory](https://www.terraform.io/docs/plugins/basics.html#installing-a-plugin) to help Terraform find this file.
+This should produce a file at `$GOPATH/bin/terraform-provider-buildkite`. To use this with Terraform you'll need to move that binary to the [third-party plugins directory](https://www.terraform.io/docs/plugins/basics.html#installing-a-plugin) to help Terraform find this file.
 
 You can see debug output via `TF_LOG=DEBUG terraform plan`
