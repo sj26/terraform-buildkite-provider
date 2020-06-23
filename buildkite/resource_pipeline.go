@@ -541,8 +541,10 @@ func preparePipelineRequestPayload(d *schema.ResourceData) *Pipeline {
 			s := githubSettings[0].(map[string]interface{})
 
 			for k, vI := range s {
-				if d.HasChange(fmt.Sprintf("github_settings.0.%s", k)) {
-					settings[k] = vI
+				if k != "commit_status_404s" && k != "commit_status_error" {
+					if d.HasChange(fmt.Sprintf("github_settings.0.%s", k)) {
+						settings[k] = vI
+					}
 				}
 			}
 		} else if len(bitbucketSettings) > 0 {
